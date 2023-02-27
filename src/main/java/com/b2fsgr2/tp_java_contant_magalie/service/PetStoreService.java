@@ -11,10 +11,15 @@ import java.util.List;
 
 @Transactional
 public class PetStoreService {
+    private EntityManager entityManager;
 
-    private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tp_java_contant_magalie");
-    private EntityManager entityManager = entityManagerFactory.createEntityManager();
-    private PetStoreDAO petStoreDAO = new PetStoreDAO(entityManager);
+    private PetStoreDAO petStoreDAO;
+
+    public PetStoreService() {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("petstorePU");
+        entityManager = entityManagerFactory.createEntityManager();
+        petStoreDAO = new PetStoreDAO(entityManager);
+    }
 
     public PetStore createPetStore(PetStore petStore) {
         return petStoreDAO.create(petStore);
@@ -41,6 +46,6 @@ public class PetStoreService {
     }
 
     public void closeEntityManagerFactory() {
-        entityManagerFactory.close();
+        entityManager.close();
     }
 }
