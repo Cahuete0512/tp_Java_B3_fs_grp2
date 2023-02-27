@@ -2,12 +2,11 @@ package com.b2fsgr2.tp_java_contant_magalie.entities;
 
 import javax.persistence.*;
 import java.util.Date;
-
 @Entity
-@Table(name="ANIMAL")
-public class Animal {
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+public abstract class Animal {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "ID")
     private Long id;
     @Column(name = "BIRTH")

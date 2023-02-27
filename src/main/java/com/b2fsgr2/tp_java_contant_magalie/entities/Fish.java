@@ -4,8 +4,7 @@ import com.b2fsgr2.tp_java_contant_magalie.enumeration.FishEnv;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name="FISH")
+@Entity(name = "FISH")
 public class Fish extends Animal{
     @Column(name="LIVING_ENV")
     @Enumerated(EnumType.STRING)

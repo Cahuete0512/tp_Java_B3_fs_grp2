@@ -1,11 +1,9 @@
 package com.b2fsgr2.tp_java_contant_magalie.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Entity
-@Table(name = "CAT")
+@Entity(name = "CAT")
+@DiscriminatorValue("C")
 public class Cat extends Animal{
     @Column(name="CHIPID")
     private String chipId;
