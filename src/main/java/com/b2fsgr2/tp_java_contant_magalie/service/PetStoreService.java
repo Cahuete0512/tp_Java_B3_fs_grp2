@@ -11,14 +11,14 @@ import java.util.List;
 
 @Transactional
 public class PetStoreService {
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
-    private PetStoreDAO petStoreDAO;
+    private final PetStoreDAO petStoreDAO;
 
-    public PetStoreService() {
+    public PetStoreService(EntityManager entityManager) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("petstorePU");
-        entityManager = entityManagerFactory.createEntityManager();
-        petStoreDAO = new PetStoreDAO(entityManager);
+        this.entityManager = entityManagerFactory.createEntityManager();
+        petStoreDAO = new PetStoreDAO(this.entityManager);
     }
 
     public PetStore createPetStore(PetStore petStore) {

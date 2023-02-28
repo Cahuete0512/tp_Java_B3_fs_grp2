@@ -54,7 +54,6 @@ public abstract class Animal {
                 "id=" + id +
                 ", birth=" + birth +
                 ", couleur='" + couleur + '\'' +
-                ", petStore=" + petStore +
                 '}';
     }
 }

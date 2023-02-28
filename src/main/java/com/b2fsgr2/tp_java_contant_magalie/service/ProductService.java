@@ -9,13 +9,13 @@ import javax.persistence.Persistence;
 import java.util.List;
 
 public class ProductService {
-    private EntityManager entityManager;
-    private ProductDAO productDAO;
+    private final EntityManager entityManager;
+    private final ProductDAO productDAO;
 
-    public ProductService() {
+    public ProductService(EntityManager entityManager) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("petstorePU");
-        entityManager = entityManagerFactory.createEntityManager();
-        productDAO = new ProductDAO(entityManager);
+        this.entityManager = entityManagerFactory.createEntityManager();
+        productDAO = new ProductDAO(this.entityManager);
     }
 
     public List<Product> findAll() {

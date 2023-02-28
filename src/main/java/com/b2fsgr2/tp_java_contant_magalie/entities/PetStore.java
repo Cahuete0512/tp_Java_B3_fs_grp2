@@ -18,9 +18,9 @@ public class PetStore {
     private String name;
     @Column(name="MANAGER_NAME")
     private String managerName;
-    @OneToMany(mappedBy = "petStore", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "petStore", cascade = CascadeType.MERGE)
     private List<Animal> animals = new ArrayList<>();
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "ID_ADDRESS")
     private Address address;
     @ManyToMany

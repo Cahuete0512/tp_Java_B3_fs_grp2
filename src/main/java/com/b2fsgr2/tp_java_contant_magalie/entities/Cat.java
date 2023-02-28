@@ -16,10 +16,4 @@ public class Cat extends Animal{
         this.chipId = chipId;
     }
 
-    @Override
-    public String toString() {
-        return "Cat{" +
-                "chipId='" + chipId + '\'' +
-                '}';
-    }
 }

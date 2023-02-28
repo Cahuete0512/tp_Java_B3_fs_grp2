@@ -2,7 +2,6 @@ package com.b2fsgr2.tp_java_contant_magalie.service;
 
 import com.b2fsgr2.tp_java_contant_magalie.dao.AddressDAO;
 import com.b2fsgr2.tp_java_contant_magalie.entities.Address;
-import com.b2fsgr2.tp_java_contant_magalie.entities.PetStore;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,13 +9,13 @@ import javax.persistence.Persistence;
 import java.util.List;
 
 public class AddressService {
-    private EntityManager entityManager;
-    private AddressDAO addressDAO;
+    private final EntityManager entityManager;
+    private final AddressDAO addressDAO;
 
-    public AddressService() {
+    public AddressService(EntityManager entityManager) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("petstorePU");
-        entityManager = entityManagerFactory.createEntityManager();
-        addressDAO = new AddressDAO(entityManager);
+        this.entityManager = entityManagerFactory.createEntityManager();
+        addressDAO = new AddressDAO(this.entityManager);
     }
     public Address createAddress(Address address) {
         return addressDAO.create(address);

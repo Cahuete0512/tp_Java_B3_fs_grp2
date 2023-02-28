@@ -9,13 +9,16 @@ import javax.persistence.Persistence;
 import java.util.List;
 
 public class AnimalService {
-    private EntityManager entityManager;
-    private AnimalDAO animalDAO;
+    private final EntityManager entityManager;
+    private final AnimalDAO animalDAO;
 
     public AnimalService() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("petstorePU");
-        entityManager = entityManagerFactory.createEntityManager();
-        animalDAO = new AnimalDAO(entityManager);
+        this.entityManager = entityManagerFactory.createEntityManager();
+        animalDAO = new AnimalDAO(this.entityManager);
+    }
+    public List<Animal> findAllByAnimalerieId(Long animalerieId) {
+        return animalDAO.findAllByAnimalerieId(animalerieId);
     }
 
     public Animal findById(Long id) {
@@ -32,10 +35,8 @@ public class AnimalService {
         return animals;
     }
 
-    public void saveOrUpdate(Animal animal) {
-        entityManager.getTransaction().begin();
-        animalDAO.saveOrUpdate(animal);
-        entityManager.getTransaction().commit();
+    public Animal saveOrUpdate(Animal animal) {
+        return animalDAO.saveOrUpdate(animal);
     }
 
     public void delete(Animal animal) {
